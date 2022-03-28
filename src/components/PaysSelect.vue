@@ -1,6 +1,6 @@
 <template>
-    <select v-model="this.internalValue">
-        <option disabled value="">Please Select</option>
+    <select class="form-select" v-model="this.internalValue">
+        <option disabled value="">Veuillez choisir</option>
         <option v-for="option in options" :key="option.idPays" v-bind:value="option.idPays">{{option.nomPays}}</option>
     </select>
 </template>

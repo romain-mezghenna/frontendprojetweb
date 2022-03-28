@@ -1,11 +1,12 @@
 import axios from 'axios';
+import SHA256 from '../security/hash'
 const API_URL = 'http://localhost:3000/';
 class AuthService {
     login(user) {
         return axios
             .post(API_URL + 'login', {
                 mail: user.mail,
-                password: user.password
+                password: SHA256(user.password)
             })
             .then(response => {
                 if (response.data.accessToken) {
@@ -20,7 +21,7 @@ class AuthService {
     register(user) {
         return axios.post(API_URL + 'users', {
             mail: user.mail,
-            password: user.password,
+            password: SHA256(user.password),
             nomUser: user.nomUser,
             prenomUser: user.prenomUser,
             tel: user.tel,

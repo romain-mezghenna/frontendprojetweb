@@ -1,24 +1,24 @@
 <template>
   <div class="col-md-12">
     <div class="card card-container">
-        <div class="loginForm">
-            <label for="nom">Nom </label>
-            <input type="text" v-model="this.user.nomUser" />
-            <label for="prenom">Prenom </label>
-            <input type="text" v-model="this.user.prenomUser" />
-            <label for="login">Addresse Email</label>
-            <input type="text" v-model="this.user.mail" />
-            <label for="password">Mot de passe </label>
-            <input type="password" v-model="this.user.password" />
-            <label for="tel">Numéro de téléphone </label>
-            <input type="text" v-model="this.user.tel" />
-            <label for="ville">Ville </label>
-            <input type="text" v-model="this.user.nomVille" />
-            <label for="ville">Pays </label>
-            <pays-select v-model="this.user.idPays" />
-            <button @click="handleRegister()">Register</button>
-            <p>{{this.loggedIn}} - {{this.message}}</p>
-        </div>
+        <form class="loginForm">
+            <label class="form-label" for="nom">Nom </label>
+            <input class="form-control" type="text" v-model="this.user.nomUser" required/>
+            <label class="form-label" for="prenom">Prenom </label>
+            <input class="form-control" type="text" v-model="this.user.prenomUser" required/>
+            <label class="form-label" for="login">Addresse Email</label>
+            <input class="form-control" type="text" v-model="this.user.mail" required/>
+            <label class="form-label" for="password">Mot de passe </label>
+            <input class="form-control" type="password" v-model="this.user.password" required/>
+            <label class="form-label" for="tel">Numéro de téléphone </label>
+            <input class="form-control" type="text" v-model="this.user.tel" required/>
+            <label class="form-label" for="ville">Ville </label>
+            <input class="form-control" type="text" v-model="this.user.nomVille" required/>
+            <label class="form-label" for="ville">Pays </label>
+            <pays-select v-model="this.user.idPays"/>
+            <button type="submit" class="form-control btn btn-primary" style="margin-top:10%;" @click="handleRegister()">Register</button>
+            <p class="form-label"> {{this.message}}</p>
+        </form>
     </div>
   </div>
 </template>
@@ -60,6 +60,7 @@ export default {
           this.$router.push('/login')
         },
         (error) => {
+          console.log("oui");
           this.message = error.response.data.message
           this.loading = false;
         }
@@ -72,10 +73,6 @@ export default {
 };
 </script>
 <style>
-label {
-  display: block;
-  margin-top: 10px;
-}
 .card-container.card {
   max-width: 350px !important;
   padding: 40px 40px;

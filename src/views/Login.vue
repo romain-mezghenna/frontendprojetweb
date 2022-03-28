@@ -1,13 +1,13 @@
 <template>
   <div class="col-md-12">
     <div class="card card-container">
-      <div class="loginForm">
-    <label for="login">Addresse Email</label>
-    <input type="text" v-model="this.user.mail" />
-    <label for="password">Mot de passe </label>
-    <input type="password" v-model="this.user.password" />
-    <button @click="handleLogin()">Login</button>
-    <p>{{this.loggedIn}} - {{this.message}}</p>
+    <div class="loginForm">
+        <label class="form-label" for="login">Addresse Email</label>
+        <input type="text" class="form-control" v-model="this.user.mail" required/>
+        <label class="form-label" for="password">Mot de passe </label>
+        <input class="form-control" type="password" v-model="this.user.password" required/>
+        <button type="submit" class=" form-control btn btn-primary" @click="handleLogin()" style="margin-top:10%;">Login</button>
+        <p>{{this.message}}</p>
   </div>
     </div>
   </div>
@@ -44,20 +44,19 @@ export default {
                 this.$router.push('/profile')
             },
             error => {
-              this.loading = false;
-              this.message = error.response.data.message
+                this.loading = false;
+                this.message = error.response.data.message
             }
           );
+        } else {
+            this.loading = false;
+            this.message = 'Username or password missing'
         }
     }
   }
 };
 </script>
 <style>
-label {
-  display: block;
-  margin-top: 10px;
-}
 .card-container.card {
   max-width: 350px !important;
   padding: 40px 40px;

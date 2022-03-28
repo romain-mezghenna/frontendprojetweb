@@ -4,6 +4,7 @@ import Login from "../views/Login.vue"
 import Register from "../views/Register.vue"
 import Profile from "../views/Profile.vue"
 import Logout from "../views/Logout.vue"
+import ReservationView from "../views/ReservationView.vue"
 
 const routes = [
   {
@@ -21,24 +22,40 @@ const routes = [
   },
   {
     path:'/login',
-    name:'login',
+    name:'Login',
     component: Login
   },
   {
     path: '/register',
-    name:"register",
+    name:"Register",
     component : Register
   },
   {
     path: '/profile',
-    name: 'profile',
+    name: 'Profile',
     component : Profile
   },
   {
     path: '/logout',
-    name: 'logout',
+    name: 'Logout',
     component: Logout
-  }
+  },
+  {
+    path: '/astres',
+    name: 'Astres',
+    component: () => import( /* webpackChunkName: "about" */ '../views/AstreView.vue')
+  },
+  {
+    path: '/ships',
+    name: 'Lanceurs',
+    component: () => import( /* webpackChunkName: "about" */ '../views/LanceurView.vue')
+  },
+  {
+    path: '/reservations',
+    name:'Reservations',
+    component: () => import( /* webpackChunkName: "about" */ '../views/ReservationView.vue')
+  },
+
 
 ]
 

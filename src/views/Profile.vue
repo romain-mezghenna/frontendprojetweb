@@ -1,24 +1,26 @@
 <template>
     <div class="col-md-12">
     <div class="card card-container">
-        <label for="">Check this if you want to update your account</label>
-        <input type="checkbox" v-model="update">
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" v-model="update" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault"> Modifier votre profil</label>
+        </div>
         <div class="loginForm">
-            <label for="nom">Nom </label>
-            <input type="text" :disabled="!update" :placeholder="this.currentUser.nomUser" v-model="this.user.nomUser" />
-            <label for="prenom">Prenom </label>
-            <input type="text" :disabled="!update"  v-model="this.user.prenomUser" :placeholder="this.currentUser.prenomUser" />
-            <label for="login">Addresse Email</label>
-            <input type="text"  :disabled="!update" v-model="this.user.mail" :placeholder="this.currentUser.mail" />
-            <label for="password">Mot de passe </label>
-            <input type="password" :disabled="!update"  v-model="this.user.password" :placeholder="this.currentUser.password" />
-            <label for="tel">Numéro de téléphone </label>
-            <input type="text" :disabled="!update" v-model="this.user.tel" :placeholder="this.currentUser.tel"/>
-            <label for="ville">Ville </label>
+            <label class="form-label" for="nom">Nom </label>
+            <input class="form-control" type="text" :disabled="!update" :placeholder="this.currentUser.nomUser" v-model="this.user.nomUser" />
+            <label class="form-label" for="prenom">Prenom </label>
+            <input class="form-control" type="text" :disabled="!update"  v-model="this.user.prenomUser" :placeholder="this.currentUser.prenomUser" />
+            <label class="form-label" for="login">Addresse Email</label>
+            <input class="form-control" type="text"  :disabled="!update" v-model="this.user.mail" :placeholder="this.currentUser.mail" />
+            <label class="form-label" for="password">Mot de passe </label>
+            <input class="form-control" type="password" :disabled="!update"  v-model="this.user.password" :placeholder="this.currentUser.password" />
+            <label class="form-label" for="tel">Numéro de téléphone </label>
+            <input class="form-control" type="text" :disabled="!update" v-model="this.user.tel" :placeholder="this.currentUser.tel"/>
+            <label class="form-label" for="ville">Ville </label>
             <ville-select v-model="this.user.nomVille" v-bind:selectVille="this.currentUser.idVille" :disabled="!update"/>
-            <label for="ville">Pays </label>
+            <label class="form-label" for="ville">Pays </label>
             <pays-select v-model="this.user.idPays" :disabled="!update" />
-            <button v-if="update" @click="handleUpdate()">Update</button>
+            <button class="form-control btn btn-success" style="margin-top:1em;" v-if="update" @click="handleUpdate()">Confirmer</button>
             <p></p>
         </div>
     </div>
@@ -30,6 +32,7 @@ import PaysSelect from "../components/PaysSelect.vue"
 import VilleSelect from "../components/VilleSelect.vue"
 import User from "../models/user.js"
 import authHeader from "../services/auth-header"
+import SHA256 from '../security/hash'
 const axios = require('axios')
 const API_URL = 'http://localhost:3000/';
 export default {
@@ -90,7 +93,7 @@ export default {
             userUpdate.mail = this.user.mail
         }
         if(this.user.password.length > 0){
-            userUpdate.password = this.user.password
+            userUpdate.password = SHA256(this.user.password) 
         }
         if(this.user.tel.length > 0){
             userUpdate.tel = this.user.tel
@@ -105,5 +108,7 @@ export default {
 </script>
 
 <style>
-
+.form-control {
+    margin-bottom: 5%;
+}
 </style>

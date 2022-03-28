@@ -1,5 +1,5 @@
 <template>
-    <select v-model="this.internalValue">
+    <select class="form-select" v-model="this.internalValue">
         <option disabled value="">Please Select</option>
         <option v-for="option in options" :key="option.idVille" :value="option.idVille" :selected="option.idVille == this.selectVille">{{option.nomVille}}</option>
     </select>
