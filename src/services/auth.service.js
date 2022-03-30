@@ -1,6 +1,6 @@
 import axios from 'axios';
 import SHA256 from '../security/hash'
-const API_URL = 'http://localhost:3000/';
+const API_URL = 'https://astroworld-api.herokuapp.com/';
 class AuthService {
     login(user) {
         return axios
@@ -13,7 +13,7 @@ class AuthService {
                     localStorage.setItem('user', JSON.stringify(response.data));
                 }
                 return response.data;
-            });
+            })
     }
     logout() {
         localStorage.removeItem('user');

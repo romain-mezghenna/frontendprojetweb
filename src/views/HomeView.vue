@@ -16,18 +16,16 @@
     </div>
   </div>
 </template>
-10 23 48
+
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 import VolCard from '@/components/VolCard.vue'
 import authHeader from '../services/auth-header'
 const axios = require("axios")
-const API_URL = 'http://localhost:3000/';
+const API_URL = 'https://astroworld-api.herokuapp.com/';
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld,
     VolCard,
   },
   data(){
@@ -49,8 +47,7 @@ export default {
     };
     axios.get(API_URL + 'vols',config).then((response) => {
       this.vols = response.data
-    })
-    axios.get(API_URL + 'astres',config).then((response) => {
+      axios.get(API_URL + 'astres',config).then((response) => {
       response.data.forEach(element => {
         this.astres[element.idAstre] = element
       });
@@ -60,6 +57,8 @@ export default {
         this.pasdetir[element.idPas] = element
       });
     })
+    })
+    
   }
 }
 </script>
@@ -72,8 +71,8 @@ export default {
   justify-content: center;
 }
 .home {
-  background-color: rgb(249, 249, 255);
-  color:#2c3e50;
+  background-color: rgb(9, 23, 48) !important;
+  color:#f8f9fa !important;
 }
 body {
   background-color: rgb(249, 249, 255);;

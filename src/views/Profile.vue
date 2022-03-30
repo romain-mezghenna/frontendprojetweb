@@ -34,7 +34,7 @@ import User from "../models/user.js"
 import authHeader from "../services/auth-header"
 import SHA256 from '../security/hash'
 const axios = require('axios')
-const API_URL = 'http://localhost:3000/';
+const API_URL = 'https://astroworld-api.herokuapp.com/';
 export default {
     data(){
         return {
@@ -74,6 +74,7 @@ export default {
         this.loading = true;
          // Validate form
           axios.patch(API_URL + 'users/' + this.currentUser.idUser,userUpdate,config).then((response) => {
+              window.alert("Veuillez vous reconnecter")
               this.$store.dispatch('auth/logout')
               this.$router.push('/login')
           }).catch((error) => {

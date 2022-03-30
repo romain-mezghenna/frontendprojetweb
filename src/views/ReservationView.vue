@@ -13,7 +13,7 @@
     v-bind:pas="pasdetir[vol.idPas].nomPas"
     v-bind:alreadyReserve="true"
     v-bind:homePage="false"/> 
-    <h3 v-if="this.vols.length == 0" class="text-dark" for="">Vous n'avez aucune réservation</h3>
+    <h2 v-if="this.vols.length == 0" class="text-light" for="">Vous n'avez aucune réservation</h2>
     </div>
     
   </div>
@@ -23,7 +23,7 @@
 import authHeader from '../services/auth-header'
 import VolCard from '../components/VolCard.vue'
 const axios = require('axios')
-const API_URL = 'http://localhost:3000/';
+const API_URL = 'https://astroworld-api.herokuapp.com/';
 export default {
     name: 'ReservationView',
     components: {
@@ -77,6 +77,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.home {
+    height: 100vh !important;
+    color : #f8f9fa !important;
+}
 </style>

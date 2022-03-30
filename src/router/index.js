@@ -4,7 +4,6 @@ import Login from "../views/Login.vue"
 import Register from "../views/Register.vue"
 import Profile from "../views/Profile.vue"
 import Logout from "../views/Logout.vue"
-import ReservationView from "../views/ReservationView.vue"
 
 const routes = [
   {
@@ -51,9 +50,29 @@ const routes = [
     component: () => import( /* webpackChunkName: "about" */ '../views/LanceurView.vue')
   },
   {
+    path: '/companies',
+    name: 'Companies',
+    component: () => import( /* webpackChunkName: "about" */ '../views/CompanieView.vue')
+  },
+  {
     path: '/reservations',
     name:'Reservations',
     component: () => import( /* webpackChunkName: "about" */ '../views/ReservationView.vue')
+  },
+  {
+    path: '/newvol',
+    name: 'AddVol',
+    component: () => import( /* webpackChunkName: "about" */ '../views/AddVolView.vue')
+  },
+  {
+    path: '/newastre',
+    name: 'AddAstre',
+    component: () => import( /* webpackChunkName: "about" */ '../views/AddAstreView.vue')
+  },
+  {
+    path: '/newlanceur',
+    name: 'AddLanceur',
+    component: () => import( /* webpackChunkName: "about" */ '../views/AddLanceurView.vue')
   },
 
 

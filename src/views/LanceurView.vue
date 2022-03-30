@@ -14,7 +14,7 @@
 import LanceurCard from '@/components/LanceurCard.vue'
 import authHeader from '../services/auth-header'
 const axios = require("axios")
-const API_URL = 'http://localhost:3000/';
+const API_URL = 'https://astroworld-api.herokuapp.com/';
 export default {
   name: 'HomeView',
   components: {
@@ -23,7 +23,7 @@ export default {
   data(){
     return {
         lanceurs : [],
-        companies : [],
+        companies : {},
     }
   },
   mounted(){
@@ -32,12 +32,13 @@ export default {
     };
     axios.get(API_URL + 'lanceurs',config).then((response) => {
       this.lanceurs = response.data
-    })
-    axios.get(API_URL + 'companies',config).then((response) => {
+      axios.get(API_URL + 'companies',config).then((response) => {
         response.data.forEach((element) => {
             this.companies[element.idCompanie] = element
         })
     })
+    })
+    
   }
 }
 </script>

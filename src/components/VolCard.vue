@@ -1,6 +1,6 @@
 <template>
 <div class="volCard card mb-3 rounded" style="width: 18rem;">
-    <img :src="require('../assets/images/' + this.imageAstre)" alt="" srcset="" class="card-img-top">
+    <img :src="this.imageAstre" alt="" srcset="" class="card-img-top">
     <div class="card-body d-flex flex-column">
         <h4 for="" class="card-title">Vol pour {{this.astre}}</h4>
         <label class="card-text" for="">le {{this.date}} à {{this.heureDepart.substring(0, this.heureDepart.length - 3)}}</label>
@@ -19,7 +19,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header d-flex flex-column">
-                <img :src="require('../assets/images/' + this.imageAstre)" alt="" srcset="" class="card-img-top" style="width:40%;">
+                <img :src="this.imageAstre" alt="" srcset="" class="card-img-top" style="width:40%;">
                 <h5 class="modal-title someMargin " id="exampleModalLabel">Vol numéro {{this.idVol}} pour {{this.astre}}</h5>
                 <strong class="card-text someMargin" for="">le {{this.date}} à {{this.heureDepart.substring(0, this.heureDepart.length - 3)}}</strong> <br>
                 <strong class="card-text" for="">Depuis {{this.pas}}</strong> <br>
@@ -52,7 +52,7 @@
 
 <script>
 const axios = require('axios')
-const API_URL = 'http://localhost:3000/';
+const API_URL = 'https://astroworld-api.herokuapp.com/';
 import authHeader from '../services/auth-header'
 export default {
     props : {
@@ -140,5 +140,10 @@ export default {
 }
 .someMargin {
     margin-top:5%;
+}
+
+.modal-content {
+    background-color:black !important;
+    color: #f8f9fa;
 }
 </style>

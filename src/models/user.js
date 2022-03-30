@@ -3,7 +3,7 @@ export default class User {
         this.idUser = id
         this.nomUser = nom
         this.prenomUser = prenom
-        this.mail = mail,
+        this.mail = mail
         this.password = password
         this.tel = tel
         this.isAdmin = isAdmin

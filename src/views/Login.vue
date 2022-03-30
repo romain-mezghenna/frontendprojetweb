@@ -26,6 +26,12 @@ export default {
   computed: {
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
+    },
+    validEmail(){
+      return this.user.mail.length > 0
+    },
+    validPassword(){
+      return this.user.password.length > 0
     }
   },
   created() {
@@ -36,21 +42,21 @@ export default {
   methods: {
     handleLogin() {
       this.loading = true;
-        if (this.user.mail.length > 0  && this.user.password.length > 0) {
+        if (this.validEmail && this.validPassword) {
           this.$store.dispatch('auth/login', this.user).then(
             () => {
                 this.loading = false;
                 this.message = "Logged In !"
                 this.$router.push('/profile')
-            },
-            error => {
+            }).catch(
+            (error) => {
                 this.loading = false;
-                this.message = error.response.data.message
-            }
-          );
+                this.message = error.response.data.message || 'Email ou mot de passe erroné'
+            })
+          
         } else {
             this.loading = false;
-            this.message = 'Username or password missing'
+            this.message = 'Email ou mot de passe manquant'
         }
     }
   }
