@@ -45,14 +45,14 @@ export default {
     const config = {
         headers: authHeader()
     };
-    axios.get('vols',config).then((response) => {
+    axios.get(API_URL + 'vols',config).then((response) => {
       this.vols = response.data
-      axios.get('astres',config).then((response) => {
+      axios.get(API_URL + 'astres',config).then((response) => {
       response.data.forEach(element => {
         this.astres[element.idAstre] = element
       });
     })
-    axios.get('pasdetir',config).then((response) => {
+    axios.get(API_URL + 'pasdetir',config).then((response) => {
       response.data.forEach(element => {
         this.pasdetir[element.idPas] = element
       });
