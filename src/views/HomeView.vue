@@ -22,7 +22,7 @@
 import VolCard from '@/components/VolCard.vue'
 import authHeader from '../services/auth-header'
 const axios = require("axios")
-const API_URL = 'http://localhost:3000/';
+const API_URL = 'https://astroworld-api.herokuapp.com/';
 export default {
   name: 'HomeView',
   components: {
