@@ -45,7 +45,7 @@ export default {
         return this.$store.state.auth.user.user.isAdmin
     },
     validForm(){
-        return this.lanceur.nomLanceur.length > 0 && this.lanceur.idCompanie.length > 0 && this.lanceur.image.length > 0 
+        return this.lanceur.nomLanceur.length > 0 && this.lanceur.idCompanie > 0 && this.lanceur.image.length > 0 
     },
   },
   methods: {
