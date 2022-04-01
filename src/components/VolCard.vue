@@ -14,6 +14,9 @@
         <button v-if="!this.alreadyReserve" type="button" class="btn mt-auto btn-primary" data-bs-toggle="modal" v-bind:data-bs-target="'#detailVol' + idVol">
            Je réserve
         </button>
+        <button v-if="this.loggedIn ? this.currentUser.isAdmin : false" type="button" class="btn mt-auto btn-danger" @click="handleDelete()">
+           Supprimer
+        </button>
     </div> 
     <div v-if="!this.alreadyReserve" class="modal fade" v-bind:id="'detailVol' + this.idVol" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -115,6 +118,22 @@ export default {
                 this.errorMessage='Vous n\'avait pas inscrit la bonne phrase'
             }
         },
+        async handleDelete(){
+                const config = {
+                headers: authHeader()
+                };
+                try {
+                    console.log(API_URL+'vols/'+this.idVol);
+                    await axios.delete(API_URL + 'vols/' + this.idVol,config)
+                    window.alert("Vol supprimé avec succès !")
+                    this.$router.go()
+                } catch (error) {
+                    if (error.response.status == 401){
+                        window.alert("Vous n'êtes pas autorisé à effectuer cette opération")
+                    }
+                }
+        },
+        
     },
     computed: {
         isPassPhrase(){
